@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import CompareBar from '../components/CompareBar'
 
 /** Remonte en haut de page à chaque navigation, ou fait défiler jusqu'à l'ancre (#equipe...). */
 function ScrollManager() {
@@ -34,6 +35,7 @@ export default function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      <CompareBar />
     </>
   )
 }

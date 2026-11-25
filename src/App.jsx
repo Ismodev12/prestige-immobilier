@@ -18,6 +18,8 @@ const Favorites = lazy(() => import('./pages/Favorites'))
 const Faq = lazy(() => import('./pages/Faq'))
 const Legal = lazy(() => import('./pages/Legal'))
 const NotFound = lazy(() => import('./pages/NotFound'))
+const Simulator = lazy(() => import('./pages/Simulator'))
+const Compare = lazy(() => import('./pages/Compare'))
 
 function PageLoader() {
   return (
@@ -45,6 +47,8 @@ export default function App() {
           <Route path="estimation" element={<Estimate />} />
           <Route path="favoris" element={<Favorites />} />
           <Route path="faq" element={<Faq />} />
+          <Route path="simulateur" element={<Simulator />} />
+          <Route path="comparer" element={<Compare />} />
           <Route path="mentions-legales" element={<Legal page="mentions" />} />
           <Route path="confidentialite" element={<Legal page="confidentialite" />} />
           <Route path="cookies" element={<Legal page="cookies" />} />

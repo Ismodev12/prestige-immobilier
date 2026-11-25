@@ -11,6 +11,8 @@ const links = [
   { label: 'Louer', to: '/louer' },
   { label: 'Vendre', to: '/vendre' },
   { label: 'Estimer mon bien', to: '/estimation' },
+  { label: 'Simulateur de budget', to: '/simulateur' },
+  { label: 'Comparateur', to: '/comparer' },
   { label: 'Notre agence', to: '/agence' },
   { label: 'Blog', to: '/blog' },
   { label: 'FAQ', to: '/faq' },

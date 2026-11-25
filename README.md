@@ -31,6 +31,19 @@ src/
 scripts/        optimisation des photos et génération du logo
 ```
 
+## Outils pour les visiteurs
+
+- **Coût réel** (fiche de chaque bien à vendre) : mensualité du crédit, assurance, taxe foncière, charges et énergie
+  estimée d'après le DPE, avec apport, durée et taux réglables. Calculs dans `src/utils/finance.js`.
+- **Simulateur de budget** (`/simulateur`) : budget d'achat maximal selon revenus, crédits en cours et apport
+  (taux d'endettement de 35 %), puis lien vers les biens accessibles. Les réglages sont partagés avec les fiches et
+  le comparateur (stockage local du navigateur).
+- **Comparateur** (`/comparer`) : jusqu'à 3 biens côte à côte, meilleure valeur mise en évidence, barre flottante de
+  sélection sur toutes les pages.
+- **Réservation de visite** (fiche bien) : choix du jour, du créneau et du mode (sur place ou vidéo), confirmation
+  et fichier agenda `.ics` avec rappel. **Limite** : les disponibilités sont simulées dans `src/utils/agenda.js` ;
+  à remplacer par l'agenda réel de l'agence (API Google Agenda, Calendly ou logiciel métier).
+
 ## Formulaires (limite actuelle)
 
 Aucun backend n'est fourni. Sans configuration, les formulaires de contact, de visite et d'estimation affichent

@@ -46,6 +46,8 @@ export const navigation = [
       { label: 'Villas', to: '/acheter?type=Villa' },
       { label: 'Maisons', to: '/acheter?type=Maison' },
       { label: 'Appartements', to: '/acheter?type=Appartement' },
+      { label: 'Simulateur de budget', to: '/simulateur' },
+      { label: 'Comparateur de biens', to: '/comparer' },
     ],
   },
   {

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { RotateCcw, SearchX, SlidersHorizontal, X } from 'lucide-react'
 import { properties, propertyTypes } from '../data/properties'
 import { BUDGETS, SORT_OPTIONS, countActiveFilters, filterProperties, parseFilters } from '../utils/filters'
-import { plural } from '../utils/format'
+import { formatPrice, plural } from '../utils/format'
 import PropertyCard from './PropertyCard'
 
 function Filters({ filters, onChange, onReset, lockTransaction, idPrefix }) {
@@ -57,6 +57,9 @@ function Filters({ filters, onChange, onReset, lockTransaction, idPrefix }) {
         </label>
         <select id={`${idPrefix}-budget`} value={filters.budget} onChange={set('budget')} className="field">
           <option value="">Sans limite</option>
+          {filters.budget && !BUDGETS[filters.transaction].some((b) => b.value === filters.budget) && (
+            <option value={filters.budget}>{formatPrice(Number(filters.budget))} (simulateur)</option>
+          )}
           {BUDGETS[filters.transaction].map((b) => (
             <option key={b.value} value={b.value}>
               {b.label}

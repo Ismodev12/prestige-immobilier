@@ -1,17 +1,15 @@
 import { Link } from 'react-router-dom'
 import { Bath, BedDouble, MapPin, Maximize2 } from 'lucide-react'
-import { team } from '../data/team'
+import { advisorFor } from '../data/team'
 import { formatListingPrice, formatSurface } from '../utils/format'
 import FavoriteButton from './ui/FavoriteButton'
+import CompareButton from './CompareButton'
 
 const badgeStyles = {
   Exclusivité: 'bg-navy text-white',
   Nouveauté: 'bg-white text-navy',
   'Coup de cœur': 'bg-coral text-white',
 }
-
-// Conseiller référent attribué de façon stable à chaque bien.
-const advisorFor = (property) => team[Number(property.id.replace(/\D/g, '')) % team.length]
 
 export default function PropertyCard({ property, priority = false, className = '' }) {
   const href = `/biens/${property.slug}`
@@ -37,7 +35,10 @@ export default function PropertyCard({ property, priority = false, className = '
             {property.transaction === 'location' ? 'À louer' : 'À vendre'}
           </span>
         </div>
-        <FavoriteButton property={property} className="absolute right-3 top-3 z-10 h-9 w-9 rounded-full bg-white/90 text-navy backdrop-blur hover:bg-white" />
+        <div className="absolute right-3 top-3 z-10 flex gap-1.5">
+          <CompareButton property={property} className="h-9 w-9" />
+          <FavoriteButton property={property} className="h-9 w-9 rounded-full bg-white/90 text-navy backdrop-blur hover:bg-white" />
+        </div>
         <div className="absolute bottom-3 left-3 flex items-center gap-2">
           <img src={agent.photo} alt="" className="h-8 w-8 rounded-full border-2 border-white object-cover object-top" loading="lazy" />
           <span className="text-[12.5px] font-semibold text-white">{agent.name}</span>

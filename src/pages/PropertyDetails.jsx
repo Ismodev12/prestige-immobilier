@@ -1,13 +1,17 @@
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Bath, BedDouble, Calendar, Check, DoorOpen, Layers, MapPin, Maximize2, Phone, Trees } from 'lucide-react'
 import { getPropertyBySlug, properties } from '../data/properties'
 import { agency } from '../data/agency'
-import { team } from '../data/team'
+import { advisorFor } from '../data/team'
 import { useSeo } from '../hooks/useSeo'
 import { formatListingPrice, formatNumber, formatPrice, formatSurface } from '../utils/format'
 import Gallery from '../components/Gallery'
 import EnergyRating from '../components/EnergyRating'
 import ContactForm from '../components/ContactForm'
+import CostCalculator from '../components/CostCalculator'
+import CompareButton from '../components/CompareButton'
+import VisitBooking from '../components/VisitBooking'
 import PropertyCard from '../components/PropertyCard'
 import FavoriteButton from '../components/ui/FavoriteButton'
 import Reveal from '../components/ui/Reveal'
@@ -30,6 +34,7 @@ function Fact({ icon: Icon, label, value }) {
 export default function PropertyDetails() {
   const { slug } = useParams()
   const property = getPropertyBySlug(slug)
+  const [tab, setTab] = useState('visite')
 
   useSeo({
     title: property ? `${property.title} à ${property.city}, ${formatListingPrice(property)}` : 'Bien introuvable',
@@ -40,7 +45,7 @@ export default function PropertyDetails() {
 
   const isRental = property.transaction === 'location'
   const listing = isRental ? { label: 'Louer', to: '/louer' } : { label: 'Acheter', to: '/acheter' }
-  const advisor = isRental ? team[2] : team[1]
+  const advisor = advisorFor(property)
   const pricePerM2 = Math.round(property.price / property.surface)
   const similar = properties
     .filter((p) => p.id !== property.id && p.transaction === property.transaction)
@@ -90,18 +95,21 @@ export default function PropertyDetails() {
               {property.district}, {property.postalCode} {property.city.replace(/ \d+e$/, '')}
             </p>
           </div>
-          <div className="flex items-end justify-between gap-6 lg:flex-col lg:items-end">
+          <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-end sm:justify-between lg:flex-col lg:items-end">
             <div className="lg:text-right">
               <p className="font-display text-[34px] font-semibold leading-none text-navy sm:text-[40px]">{formatListingPrice(property)}</p>
               <p className="mt-2 text-[13px] text-ink-muted">
                 {isRental ? 'Charges comprises' : `Honoraires à la charge du vendeur · ${formatNumber(pricePerM2)} € / m²`}
               </p>
             </div>
-            <FavoriteButton
-              property={property}
-              withLabel
-              className="min-h-[44px] shrink-0 whitespace-nowrap rounded-[4px] border border-line px-4 text-[14px] font-semibold text-navy hover:border-navy"
-            />
+            <div className="flex flex-wrap gap-2 sm:justify-end">
+              <CompareButton property={property} variant="text" />
+              <FavoriteButton
+                property={property}
+                withLabel
+                className="min-h-[44px] shrink-0 whitespace-nowrap rounded-[3px] border border-line px-4 text-[14px] font-semibold text-navy hover:border-navy"
+              />
+            </div>
           </div>
         </header>
 
@@ -170,6 +178,19 @@ export default function PropertyDetails() {
             )}
           </Reveal>
 
+          {!isRental && (
+            <Reveal as="section" aria-labelledby="cout">
+              <p className="eyebrow mb-3">Coût réel</p>
+              <h2 id="cout" className="mb-2 text-[24px] font-normal sm:text-[28px]">
+                Combien ce bien vous coûterait-il chaque mois ?
+              </h2>
+              <p className="mb-6 text-[15px] text-ink-muted">
+                Crédit, assurance, taxe foncière, charges et énergie : ajustez votre apport, la durée et le taux pour voir votre budget réel.
+              </p>
+              <CostCalculator property={property} />
+            </Reveal>
+          )}
+
           <Reveal as="section" aria-labelledby="energie">
             <h2 id="energie" className="mb-6 text-[24px] font-semibold">
               Performance énergétique
@@ -201,8 +222,8 @@ export default function PropertyDetails() {
           </Reveal>
         </div>
 
-        <aside className="lg:pt-0" aria-label="Contacter l'agence">
-          <div className="sticky top-28 space-y-5">
+        <aside className="min-w-0 lg:pt-0" aria-label="Contacter l'agence">
+          <div id="visite" className="scroll-mt-28 space-y-5">
             <div className="rounded-card border border-line bg-white p-6 shadow-card sm:p-7">
               <div className="mb-6 flex items-center gap-4 border-b border-line pb-6">
                 <img src={advisor.photo} alt={`Portrait de ${advisor.name}`} className="h-16 w-16 rounded-full object-cover object-top" loading="lazy" />
@@ -215,8 +236,29 @@ export default function PropertyDetails() {
                   </a>
                 </div>
               </div>
-              <h2 className="mb-5 text-[21px] font-semibold">Ce bien vous intéresse ?</h2>
-              <ContactForm property={property} compact />
+              <div role="tablist" aria-label="Contacter le conseiller" className="mb-6 grid grid-cols-2 border-b border-line">
+                {[
+                  ['visite', 'Réserver une visite'],
+                  ['question', 'Poser une question'],
+                ].map(([key, label]) => (
+                  <button
+                    key={key}
+                    type="button"
+                    role="tab"
+                    aria-selected={tab === key}
+                    aria-controls={`panneau-${key}`}
+                    onClick={() => setTab(key)}
+                    className={`-mb-px border-b-2 pb-3 text-[14px] font-semibold transition-colors ${
+                      tab === key ? 'border-coral text-navy' : 'border-transparent text-ink-muted hover:text-navy'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <div id={`panneau-${tab}`} role="tabpanel">
+                {tab === 'visite' ? <VisitBooking property={property} advisor={advisor} /> : <ContactForm property={property} compact />}
+              </div>
             </div>
             <a href={agency.phoneHref} className="btn-navy w-full">
               <Phone size={17} />
