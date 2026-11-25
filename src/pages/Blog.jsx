@@ -46,7 +46,7 @@ export default function Blog() {
                 <img src={first.image} alt={first.alt} className="aspect-[16/10] h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-[1.03]" />
               </div>
               <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-14">
-                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-gold-dark">{first.category}</p>
+                <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-coral-dark">{first.category}</p>
                 <h2 className="mt-4 text-balance text-[28px] font-semibold leading-tight transition-colors group-hover:text-navy-600 sm:text-[34px]">{first.title}</h2>
                 <p className="mt-4 leading-relaxed text-ink-muted">{first.excerpt}</p>
                 <p className="mt-6 flex items-center gap-3 text-[13px] text-ink-muted">
@@ -72,7 +72,7 @@ export default function Blog() {
                   <div className="overflow-hidden rounded-card">
                     <img src={post.image} alt={post.alt} loading="lazy" className="aspect-[16/10] w-full object-cover transition-transform duration-[1.2s] group-hover:scale-[1.04]" />
                   </div>
-                  <p className="mt-6 text-[12px] font-bold uppercase tracking-[0.16em] text-gold-dark">{post.category}</p>
+                  <p className="mt-6 text-[12px] font-bold uppercase tracking-[0.16em] text-coral-dark">{post.category}</p>
                   <h2 className="mt-3 text-[24px] font-semibold leading-snug">{post.title}</h2>
                   <p className="mt-3 leading-relaxed text-ink-muted">{post.excerpt}</p>
                   <p className="mt-4 text-[13px] text-ink-muted">

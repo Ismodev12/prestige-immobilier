@@ -9,9 +9,9 @@ export function FormSuccess({ title, message, result, onReset, resetLabel = 'Env
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       role="status"
-      className="rounded-card border border-gold/30 bg-gold-soft/60 p-7 sm:p-9"
+      className="rounded-card border border-coral/30 bg-peach/60 p-7 sm:p-9"
     >
-      <span className="grid h-12 w-12 place-items-center rounded-full bg-gold/15 text-gold-dark">
+      <span className="grid h-12 w-12 place-items-center rounded-full bg-coral/15 text-coral-dark">
         <CircleCheck size={26} strokeWidth={1.6} />
       </span>
       <h3 className="mt-5 text-2xl font-semibold">{title}</h3>

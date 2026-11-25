@@ -32,7 +32,7 @@ export default function Estimate() {
         <aside className="space-y-8 lg:pt-4" aria-label="Nos engagements">
           {promises.map(({ icon: Icon, title, text }) => (
             <div key={title} className="flex gap-4">
-              <Icon size={26} strokeWidth={1.3} className="shrink-0 text-gold-dark" aria-hidden="true" />
+              <Icon size={26} strokeWidth={1.3} className="shrink-0 text-coral-dark" aria-hidden="true" />
               <div>
                 <h2 className="font-sans text-[16px] font-bold text-navy">{title}</h2>
                 <p className="mt-1 text-[14px] leading-relaxed text-ink-muted">{text}</p>
@@ -41,7 +41,7 @@ export default function Estimate() {
           ))}
           <div className="border-t border-line pt-8 text-[14px] text-ink-muted">
             Vous préférez en parler de vive voix ?
-            <a href={agency.phoneHref} className="mt-1 block font-serif text-[22px] font-semibold text-navy hover:text-gold-dark">
+            <a href={agency.phoneHref} className="mt-1 block font-display text-[22px] font-semibold text-navy hover:text-coral-dark">
               {agency.phone}
             </a>
           </div>

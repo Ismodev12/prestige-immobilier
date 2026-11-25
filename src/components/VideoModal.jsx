@@ -60,7 +60,7 @@ function Slideshow() {
             <span key={slide.src} className="h-[3px] flex-1 overflow-hidden rounded-full bg-white/25">
               <motion.span
                 key={`${i}-${index}-${playing}`}
-                className="block h-full bg-gold"
+                className="block h-full bg-coral"
                 initial={{ width: i < index ? '100%' : '0%' }}
                 animate={{ width: i < index ? '100%' : i === index && playing ? '100%' : i === index ? '0%' : '0%' }}
                 transition={{ duration: i === index && playing ? DURATION / 1000 : 0, ease: 'linear' }}
@@ -76,7 +76,7 @@ function Slideshow() {
             <button type="button" onClick={() => go(-1)} className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Image précédente">
               <ChevronLeft size={18} />
             </button>
-            <button type="button" onClick={() => setPlaying((p) => !p)} className="grid h-10 w-10 place-items-center rounded-full bg-gold text-navy hover:bg-gold-light" aria-label={playing ? 'Mettre en pause' : 'Lire'}>
+            <button type="button" onClick={() => setPlaying((p) => !p)} className="grid h-10 w-10 place-items-center rounded-full bg-coral text-navy hover:bg-coral-light" aria-label={playing ? 'Mettre en pause' : 'Lire'}>
               {playing ? <Pause size={17} /> : <Play size={17} className="translate-x-px" />}
             </button>
             <button type="button" onClick={() => go(1)} className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Image suivante">

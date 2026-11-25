@@ -25,6 +25,17 @@ export const agency = {
   videoUrl: '',
 }
 
+// Conseillère mise en avant sur la page d'accueil (personnage de démonstration).
+export const advisor = {
+  firstName: 'Élodie',
+  lastName: 'Laurent',
+  role: 'Conseillère immobilière et fondatrice',
+  portrait: '/images/agent-hero.webp',
+  photo: '/images/team-1.webp',
+  intro:
+    "Depuis plus de 15 ans, j'accompagne acquéreurs, vendeurs et investisseurs à Paris et sur la Côte d'Azur. Mon métier : trouver le bien qui vous ressemble, au juste prix.",
+}
+
 export const navigation = [
   { label: 'Accueil', to: '/' },
   {

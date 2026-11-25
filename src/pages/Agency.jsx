@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom'
-import { ArrowRight, Award, Compass, Gem, HeartHandshake, Phone } from 'lucide-react'
+import { Award, Compass, Gem, HeartHandshake } from 'lucide-react'
 import PageHero from '../components/ui/PageHero'
 import Reveal from '../components/ui/Reveal'
 import SectionHeading from '../components/ui/SectionHeading'
 import EstimateSection from '../components/EstimateSection'
-import { team } from '../data/team'
+import TeamSection from '../components/TeamSection'
 import { agency } from '../data/agency'
 import { useSeo } from '../hooks/useSeo'
 
@@ -61,7 +60,7 @@ export default function Agency() {
                 <div key={label}>
                   <dt className="sr-only">{label}</dt>
                   <dd>
-                    <span className="block font-serif text-[30px] font-semibold text-navy sm:text-[36px]">{value}</span>
+                    <span className="block font-display text-[30px] font-semibold text-navy sm:text-[36px]">{value}</span>
                     <span className="text-[13px] text-ink-muted">{label}</span>
                   </dd>
                 </div>
@@ -77,7 +76,7 @@ export default function Agency() {
           <ul className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {values.map(({ icon: Icon, title, text }, i) => (
               <Reveal as="li" key={title} delay={i * 0.08} className="border-t border-white/15 pt-7">
-                <Icon size={30} strokeWidth={1.2} className="text-gold" aria-hidden="true" />
+                <Icon size={30} strokeWidth={1.2} className="text-coral" aria-hidden="true" />
                 <h3 className="mt-5 text-[22px] font-semibold text-white">{title}</h3>
                 <p className="mt-3 leading-relaxed text-white/70">{text}</p>
               </Reveal>
@@ -86,43 +85,7 @@ export default function Agency() {
         </div>
       </section>
 
-      <section id="equipe" className="section scroll-mt-24">
-        <div className="container-site">
-          <SectionHeading
-            eyebrow="L'équipe"
-            title="Des conseillers qui connaissent leur marché"
-            link={{ to: '/contact', label: 'Prendre rendez-vous' }}
-          />
-          <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((member, i) => (
-              <Reveal as="li" key={member.name} delay={i * 0.08}>
-                <div className="group overflow-hidden rounded-card bg-mist">
-                  <img
-                    src={member.photo}
-                    alt={`Portrait de ${member.name}, ${member.role}`}
-                    loading="lazy"
-                    width="720"
-                    height="900"
-                    className="aspect-[4/5] w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
-                  />
-                </div>
-                <h3 className="mt-5 text-[21px] font-semibold">{member.name}</h3>
-                <p className="text-[14px] text-ink-muted">{member.role}</p>
-                <a href={`tel:${member.phone.replace(/\s/g, '')}`} className="mt-3 inline-flex items-center gap-2 text-[14px] font-semibold text-navy hover:text-gold-dark">
-                  <Phone size={14} className="text-gold-dark" />
-                  {member.phone}
-                </a>
-              </Reveal>
-            ))}
-          </ul>
-          <div className="mt-14 flex justify-center">
-            <Link to="/contact" className="btn-navy">
-              Rencontrer l’équipe
-              <ArrowRight size={17} />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <TeamSection id="equipe" />
 
       <EstimateSection />
     </>

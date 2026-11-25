@@ -24,7 +24,7 @@ export default function Favorites() {
           </ul>
         ) : (
           <div className="rounded-card border border-dashed border-navy/15 bg-mist px-6 py-16 text-center">
-            <Heart size={40} strokeWidth={1.2} className="mx-auto text-gold-dark" aria-hidden="true" />
+            <Heart size={40} strokeWidth={1.2} className="mx-auto text-coral-dark" aria-hidden="true" />
             <h2 className="mt-5 text-2xl font-semibold">Aucun favori pour l’instant</h2>
             <p className="mx-auto mt-3 max-w-md text-ink-muted">Touchez le cœur sur une annonce pour la retrouver ici et comparer vos coups de cœur.</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">

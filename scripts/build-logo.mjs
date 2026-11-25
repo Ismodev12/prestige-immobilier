@@ -3,6 +3,7 @@
 //   public/brand/logo-light.webp  logo complet pour fond bleu marine (marine converti en blanc, or conservé)
 //   public/brand/emblem.webp      emblème seul (maison et immeubles), fond transparent
 //   public/brand/emblem-light.webp emblème pour fond bleu marine
+// Les tons dorés du fichier d'origine sont convertis en corail (#D85C45), couleur d'accent de la charte.
 // Usage : node scripts/build-logo.mjs
 import sharp from 'sharp'
 import fs from 'node:fs/promises'
@@ -26,6 +27,12 @@ async function unmix(input, { light = false, eraseNavyBelow = Infinity } = {}) {
     // Emblème : efface les lettres marine du mot « Prestige » situées sous l'arc doré.
     if (isNavy && Math.floor(j / 4 / info.width) > eraseNavyBelow) a = 0
     if (light && isNavy) { R = 255; G = 255; B = 255 }
+    // Or vers corail : on conserve les variations de lumière (reflets, ombres) du doré d'origine.
+    if (!isNavy && R > B + 30) {
+      const k = Math.max(0.55, Math.min(1.35, (R + G + B) / 3 / 140))
+      const mix = (c) => Math.max(0, Math.min(255, Math.round(k <= 1 ? c * k : c + (255 - c) * (k - 1) * 0.9)))
+      R = mix(216); G = mix(92); B = mix(69)
+    }
     out[j] = R; out[j + 1] = G; out[j + 2] = B; out[j + 3] = Math.round(a * 255)
   }
   return sharp(out, { raw: { width: info.width, height: info.height, channels: 4 } })

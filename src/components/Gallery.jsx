@@ -55,7 +55,7 @@ export default function Gallery({ images, title }) {
       </div>
       <div className="mt-3 flex items-center justify-between">
         <p className="text-[13px] text-ink-muted">{images.length} photos</p>
-        <button type="button" onClick={() => setCurrent(0)} className="inline-flex min-h-[40px] items-center gap-2 text-[14px] font-semibold text-navy hover:text-gold-dark">
+        <button type="button" onClick={() => setCurrent(0)} className="inline-flex min-h-[40px] items-center gap-2 text-[14px] font-semibold text-navy hover:text-coral-dark">
           <Expand size={16} />
           Voir toutes les photos
         </button>
@@ -112,7 +112,7 @@ export default function Gallery({ images, title }) {
                   onClick={() => setCurrent(i)}
                   aria-label={`Afficher la photo ${i + 1}`}
                   aria-current={i === current}
-                  className={`h-14 w-20 shrink-0 overflow-hidden rounded-[3px] transition-opacity ${i === current ? 'opacity-100 ring-2 ring-gold' : 'opacity-50 hover:opacity-80'}`}
+                  className={`h-14 w-20 shrink-0 overflow-hidden rounded-[3px] transition-opacity ${i === current ? 'opacity-100 ring-2 ring-coral' : 'opacity-50 hover:opacity-80'}`}
                 >
                   <img src={src} alt="" className="h-full w-full object-cover" />
                 </button>

@@ -52,10 +52,12 @@ export const images = [
   ['quartier-paris-centre', '1612821058477-8b39080e8dee', 1400],
   ['quartier-saint-germain', '1602833334025-5019f046b8f7', 1400],
   ['quartier-marais', '1563185951-328b46726c9a', 1400],
+  ['quartier-passy', '1726315335327-9c69410f0064', 1400],
 
   ['blog-investir', '1724500123173-bc79d750ac1a', 1400],
   ['blog-quartiers', '1772119044027-04e80adeda6b', 1400],
   ['blog-vendre', '1570939274717-7eda259b50ed', 1400],
+  ['blog-tendances', '1706164971309-fb4785fe6ceb', 1400],
 
   ['avatar-sophie', '1580489944761-15a19d654956', 400],
   ['avatar-thomas', '1558222218-b7b54eede3f3', 400],

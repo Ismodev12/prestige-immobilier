@@ -3,7 +3,7 @@ import { ArrowRight, Camera, FileText, Handshake, KeyRound, LineChart, Users } f
 import PageHero from '../components/ui/PageHero'
 import Reveal from '../components/ui/Reveal'
 import SectionHeading from '../components/ui/SectionHeading'
-import Testimonials from '../components/Testimonials'
+import TestimonialSection from '../components/TestimonialSection'
 import { useSeo } from '../hooks/useSeo'
 
 const steps = [
@@ -38,11 +38,11 @@ export default function Sell() {
         breadcrumbs={[{ label: 'Vendre' }]}
       >
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-          <Link to="/estimation" className="btn-gold">
+          <Link to="/estimation" className="btn-coral">
             Estimer mon bien gratuitement
             <ArrowRight size={17} />
           </Link>
-          <Link to="/contact" className="btn-outline-light">
+          <Link to="/contact" className="btn-outline">
             Parler à un conseiller
           </Link>
         </div>
@@ -55,8 +55,8 @@ export default function Sell() {
             {steps.map(({ icon: Icon, title, text }, i) => (
               <Reveal as="li" key={title} delay={(i % 3) * 0.08} className="bg-white p-8 lg:p-10">
                 <div className="flex items-start justify-between">
-                  <Icon size={30} strokeWidth={1.2} className="text-gold-dark" aria-hidden="true" />
-                  <span className="font-serif text-[40px] font-semibold leading-none text-navy/10">0{i + 1}</span>
+                  <Icon size={30} strokeWidth={1.2} className="text-coral-dark" aria-hidden="true" />
+                  <span className="font-display text-[40px] font-semibold leading-none text-navy/10">0{i + 1}</span>
                 </div>
                 <h3 className="mt-6 text-[21px] font-semibold">{title}</h3>
                 <p className="mt-3 leading-relaxed text-ink-muted">{text}</p>
@@ -75,7 +75,7 @@ export default function Sell() {
               Honoraires à la charge du vendeur, calculés sur le prix de vente net vendeur. Barème applicable au 1er janvier 2026,
               affiché en agence conformément à l’arrêté du 10 janvier 2017.
             </p>
-            <Link to="/estimation" className="btn-gold mt-8">
+            <Link to="/estimation" className="btn-coral mt-8">
               Commencer l'estimation
               <ArrowRight size={17} />
             </Link>
@@ -106,7 +106,7 @@ export default function Sell() {
         </div>
       </section>
 
-      <Testimonials />
+      <TestimonialSection />
     </>
   )
 }

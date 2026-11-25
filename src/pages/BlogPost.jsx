@@ -18,7 +18,7 @@ export default function BlogPost() {
         <Link to="/blog" className="link-arrow mb-8">
           <ArrowLeft size={16} /> Tous les articles
         </Link>
-        <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-gold-dark">{post.category}</p>
+        <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-coral-dark">{post.category}</p>
         <h1 className="mt-4 text-balance text-[34px] font-semibold leading-[1.12] sm:text-[48px]">{post.title}</h1>
         <p className="mt-5 text-[18px] leading-relaxed text-ink-muted">{post.excerpt}</p>
         <p className="mt-6 flex items-center gap-3 text-[13px] text-ink-muted">
@@ -37,9 +37,9 @@ export default function BlogPost() {
       <div className="container-site prose-estate max-w-[760px] py-12 sm:py-16 [&_p]:text-[17px]">
         {post.body.map((block) => (block.type === 'h2' ? <h2 key={block.text}>{block.text}</h2> : <p key={block.text}>{block.text}</p>))}
         <div className="mt-12 rounded-card bg-navy p-8 text-white">
-          <p className="font-serif text-[22px] font-semibold text-white">Un projet en tête ?</p>
+          <p className="font-display text-[22px] font-semibold text-white">Un projet en tête ?</p>
           <p className="mt-2 text-white/75">Nos conseillers répondent à vos questions, sans engagement.</p>
-          <Link to="/contact" className="btn-gold mt-6">
+          <Link to="/contact" className="btn-coral mt-6">
             Nous contacter <ArrowRight size={16} />
           </Link>
         </div>
@@ -54,8 +54,8 @@ export default function BlogPost() {
                   <Link to={`/blog/${p.slug}`} className="group flex gap-5">
                     <img src={p.image} alt="" loading="lazy" className="h-24 w-32 shrink-0 rounded-[4px] object-cover sm:h-28 sm:w-40" />
                     <div>
-                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-gold-dark">{p.category}</p>
-                      <p className="mt-2 font-serif text-[19px] font-semibold leading-snug text-navy group-hover:text-navy-600">{p.title}</p>
+                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-coral-dark">{p.category}</p>
+                      <p className="mt-2 font-display text-[19px] font-semibold leading-snug text-navy group-hover:text-navy-600">{p.title}</p>
                     </div>
                   </Link>
                 </li>

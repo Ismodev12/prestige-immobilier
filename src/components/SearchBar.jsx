@@ -7,7 +7,7 @@ import { BUDGETS, toQueryString } from '../utils/filters'
 function Field({ icon: Icon, label, htmlFor, children, className = '' }) {
   return (
     <div className={`group relative flex min-h-[64px] items-center gap-3 px-4 lg:px-5 ${className}`}>
-      <Icon size={19} strokeWidth={1.6} className="shrink-0 text-gold-dark" aria-hidden="true" />
+      <Icon size={19} strokeWidth={1.6} className="shrink-0 text-coral-dark" aria-hidden="true" />
       <div className="min-w-0 flex-1">
         <label htmlFor={htmlFor} className="block text-[11px] font-bold uppercase tracking-[0.14em] text-ink-muted">
           {label}
@@ -106,7 +106,7 @@ export default function SearchBar({ initial = {}, className = '' }) {
           {chevron}
         </Field>
         <div className="pt-2 lg:pl-2 lg:pt-0">
-          <button type="submit" className="btn-gold min-h-[56px] w-full px-8 lg:w-auto">
+          <button type="submit" className="btn-coral min-h-[56px] w-full px-8 lg:w-auto">
             <Search size={18} strokeWidth={2} aria-hidden="true" />
             Rechercher
           </button>

@@ -1,74 +1,87 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight, Play } from 'lucide-react'
-import SearchBar from './SearchBar'
-import VideoModal from './VideoModal'
+import { Search } from 'lucide-react'
+import { advisor } from '../data/agency'
 
 const ease = [0.22, 1, 0.36, 1]
 
+/** Hero : présentation de la conseillère, recherche rapide et portrait détouré sur fond pêche. */
 export default function Hero() {
-  const [videoOpen, setVideoOpen] = useState(false)
+  const navigate = useNavigate()
   const reduce = useReducedMotion()
-  const fade = (delay) =>
-    reduce ? {} : { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease, delay } }
+  const [query, setQuery] = useState('')
+  const fade = (delay, y = 20) =>
+    reduce ? {} : { initial: { opacity: 0, y }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease, delay } }
+
+  const onSubmit = (event) => {
+    event.preventDefault()
+    const ville = query.trim()
+    navigate(`/recherche?transaction=achat${ville ? `&ville=${encodeURIComponent(ville)}` : ''}`)
+  }
 
   return (
-    <section aria-labelledby="hero-title" className="relative">
-      <div className="relative isolate flex min-h-[600px] items-center overflow-hidden bg-navy pb-36 pt-20 sm:min-h-[640px] lg:min-h-[min(78vh,720px)] lg:pb-40">
-        <motion.img
-          src="/images/hero-villa.webp"
-          alt="Villa contemporaine de luxe aux grandes baies vitrées, éclairée à la tombée de la nuit"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[62%_center]"
-          fetchpriority="high"
-          initial={reduce ? false : { scale: 1.06 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2.4, ease }}
-        />
-        {/* Voile marine : dense à gauche pour le texte, transparent à droite pour laisser respirer l'architecture. */}
-        <div className="absolute inset-0 -z-10 bg-navy/55 lg:bg-transparent lg:bg-[linear-gradient(90deg,rgba(7,29,59,.92)_0%,rgba(7,29,59,.72)_34%,rgba(7,29,59,.18)_62%,rgba(7,29,59,0)_80%)]" />
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-navy/50 to-transparent" />
-
-        <div className="container-site">
-          <div className="max-w-[740px]">
-            <motion.p {...fade(0.1)} className="eyebrow mb-6 text-gold-light before:bg-gold-light">
-              Agence immobilière de prestige
-            </motion.p>
-            <motion.h1
-              id="hero-title"
-              {...fade(0.2)}
-              className="text-[44px] font-semibold leading-[1.04] tracking-[-0.01em] text-white sm:text-[60px] lg:text-[72px]"
-            >
-              Trouvez la maison
-              <br />
-              de vos <em className="font-medium italic text-gold-light">rêves</em>
-            </motion.h1>
-            <motion.p {...fade(0.35)} className="mt-6 max-w-md text-[17px] leading-relaxed text-white/85 sm:text-[18px]">
-              Avec Prestige Immobilier, concrétisez votre projet immobilier en toute confiance.
-            </motion.p>
-            <motion.div {...fade(0.5)} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <Link to="/acheter" className="btn-gold">
-                Découvrir nos biens
-                <ArrowRight size={18} />
-              </Link>
-              <button type="button" onClick={() => setVideoOpen(true)} className="btn-outline-light group pl-2.5">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-navy transition-transform duration-300 group-hover:scale-105">
-                  <Play size={15} className="translate-x-px fill-navy" />
-                </span>
-                Voir la vidéo
-              </button>
-            </motion.div>
-          </div>
+    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-peach">
+      <span className="deco-square -left-6 top-24 hidden lg:block" aria-hidden="true" />
+      <div className="container-site relative grid items-end gap-6 pt-12 lg:grid-cols-[1.05fr_1fr] lg:pt-6">
+        <div className="pb-14 lg:pb-36 lg:pt-16">
+          <motion.p {...fade(0.05)} className="text-[13px] font-medium text-ink-muted">
+            {advisor.role}
+          </motion.p>
+          <motion.h1
+            id="hero-title"
+            {...fade(0.15)}
+            className="mt-3 font-display text-[44px] font-medium uppercase leading-[1.02] tracking-[0.01em] text-navy sm:text-[60px] lg:text-[68px]"
+          >
+            {advisor.firstName}
+            <br />
+            {advisor.lastName}
+          </motion.h1>
+          <motion.p {...fade(0.3)} className="mt-6 max-w-md text-[15.5px] leading-relaxed text-ink-muted">
+            Trouvez la maison de vos <span className="font-semibold text-coral-dark">rêves</span>. {advisor.intro}
+          </motion.p>
+          <motion.form
+            {...fade(0.45)}
+            role="search"
+            onSubmit={onSubmit}
+            className="mt-8 flex max-w-md items-stretch gap-1.5 rounded-[3px] bg-white p-1.5 shadow-bar"
+          >
+            <label htmlFor="hero-search" className="sr-only">
+              Ville, quartier ou code postal
+            </label>
+            <input
+              id="hero-search"
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Ville ou code postal"
+              className="min-w-0 flex-1 bg-transparent px-3 text-[14.5px] text-navy placeholder:text-ink-muted/80 focus:outline-none"
+            />
+            <button type="submit" className="btn-coral min-h-[44px] px-5">
+              <Search size={16} aria-hidden="true" />
+              Rechercher
+            </button>
+          </motion.form>
         </div>
-      </div>
 
-      <div className="container-site relative z-10 -mt-24 sm:-mt-20 lg:-mt-14">
-        <motion.div {...fade(0.6)}>
-          <SearchBar />
+        <motion.div
+          className="relative mx-auto w-full max-w-[460px] self-end lg:max-w-[520px]"
+          initial={reduce ? false : { opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease, delay: 0.2 }}
+        >
+          <span className="absolute -right-4 bottom-10 h-28 w-28 bg-coral-soft sm:-right-8" aria-hidden="true" />
+          <span className="absolute -left-4 top-16 h-20 w-20 border border-coral/40 sm:-left-8" aria-hidden="true" />
+          <img
+            src={advisor.portrait}
+            alt={`Portrait de ${advisor.firstName} ${advisor.lastName}, ${advisor.role.toLowerCase()}`}
+            fetchpriority="high"
+            width="900"
+            height="1100"
+            className="relative mx-auto aspect-[9/11] h-auto w-full max-w-[460px] rounded-t-full object-cover object-top"
+          />
         </motion.div>
       </div>
-
-      <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
     </section>
   )
 }

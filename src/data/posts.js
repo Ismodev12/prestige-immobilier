@@ -1,5 +1,22 @@
 export const posts = [
   {
+    slug: 'marche-immobilier-tendances-2027',
+    title: 'Marché immobilier : les tendances à suivre en 2027',
+    category: 'Marché',
+    date: '2026-11-20',
+    readingTime: 5,
+    image: '/images/blog-tendances.webp',
+    alt: 'Maison contemporaine éclairée à la tombée de la nuit',
+    excerpt: 'Taux, volumes de ventes, biens recherchés : ce qui devrait marquer le marché haut de gamme cette année.',
+    body: [
+      { type: 'p', text: 'Après deux années d’ajustement, le marché des biens d’exception retrouve des couleurs. Les acquéreurs reviennent, plus sélectifs, et privilégient la qualité à la surface.' },
+      { type: 'h2', text: 'La performance énergétique, critère décisif' },
+      { type: 'p', text: 'Un bien classé A ou B se vend plus vite et mieux. Les vendeurs de passoires thermiques ont intérêt à anticiper des travaux ou à intégrer leur coût dans le prix.' },
+      { type: 'h2', text: 'Les extérieurs toujours plébiscités' },
+      { type: 'p', text: 'Terrasse, balcon ou jardin : un espace extérieur reste l’un des premiers critères de recherche, y compris en plein cœur de Paris.' },
+    ],
+  },
+  {
     slug: 'investir-a-paris-les-cles',
     title: 'Investir à Paris : les clés pour bien choisir son quartier',
     category: 'Investissement',

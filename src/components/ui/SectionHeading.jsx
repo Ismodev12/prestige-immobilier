@@ -2,23 +2,26 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Reveal from './Reveal'
 
-/** Titre de section : filet doré, titre serif, sous-titre et lien optionnel aligné à droite. */
-export default function SectionHeading({ eyebrow, title, subtitle, link, align = 'left', as: Heading = 'h2', light = false }) {
+/**
+ * Titre de section : surtitre en capitales, titre sur deux lignes et sous-titre facultatif.
+ * Centré par défaut, comme dans la maquette. `align="left"` place un lien optionnel à droite.
+ */
+export default function SectionHeading({ eyebrow, title, subtitle, link, align = 'center', as: Heading = 'h2', light = false, id }) {
   const centered = align === 'center'
   return (
     <Reveal
-      className={`mb-10 flex flex-col gap-5 sm:mb-12 ${centered ? 'items-center text-center' : 'md:flex-row md:items-end md:justify-between'}`}
+      className={`mb-10 flex flex-col gap-5 sm:mb-14 ${centered ? 'items-center text-center' : 'md:flex-row md:items-end md:justify-between'}`}
     >
-      <div className={centered ? 'max-w-2xl' : 'max-w-2xl'}>
-        {eyebrow && <p className={`eyebrow mb-4 ${light ? 'text-gold-light' : ''}`}>{eyebrow}</p>}
+      <div className={`max-w-2xl ${centered ? 'mx-auto' : ''}`}>
+        {eyebrow && <p className={`eyebrow mb-3 ${light ? 'text-coral-light' : ''}`}>{eyebrow}</p>}
         <Heading
-          className={`text-balance text-[30px] font-semibold leading-[1.15] sm:text-[38px] lg:text-[42px] ${light ? 'text-white' : ''}`}
+          id={id}
+          className={`text-balance text-[26px] font-normal leading-[1.25] sm:text-[32px] lg:text-[36px] ${light ? 'text-white' : ''}`}
         >
-          {!eyebrow && !centered && <span aria-hidden="true" className="mr-4 inline-block h-px w-10 translate-y-[-10px] bg-gold align-middle" />}
           {title}
         </Heading>
         {subtitle && (
-          <p className={`mt-4 max-w-xl text-[16px] leading-relaxed ${light ? 'text-white/75' : 'text-ink-muted'} ${centered ? 'mx-auto' : ''}`}>
+          <p className={`mt-4 text-[15.5px] leading-relaxed ${light ? 'text-white/75' : 'text-ink-muted'} ${centered ? 'mx-auto max-w-xl' : 'max-w-xl'}`}>
             {subtitle}
           </p>
         )}

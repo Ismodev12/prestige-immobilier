@@ -27,13 +27,13 @@ function DesktopItem({ item, pathname }) {
     }
   }, [open])
 
-  const linkClass = `relative inline-flex h-full items-center text-[14.5px] font-semibold transition-colors duration-200 ${
+  const linkClass = `relative inline-flex h-full items-center text-[14px] font-medium transition-colors duration-200 ${
     active ? 'text-navy' : 'text-ink/80 hover:text-navy'
   }`
   const underline = (
     <span
       aria-hidden="true"
-      className={`absolute inset-x-0 bottom-0 h-[2px] origin-left bg-gold transition-transform duration-300 ease-out ${
+      className={`absolute inset-x-0 bottom-0 h-[2px] origin-left bg-coral transition-transform duration-300 ease-out ${
         active ? 'scale-x-100' : 'scale-x-0'
       }`}
     />
@@ -81,7 +81,7 @@ function DesktopItem({ item, pathname }) {
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-1"
           >
-            <ul className="border-t-2 border-gold bg-white py-2 shadow-lift">
+            <ul className="border-t-2 border-coral bg-white py-2 shadow-lift">
               {item.children.map((child) => (
                 <li key={child.to}>
                   <Link
@@ -90,7 +90,7 @@ function DesktopItem({ item, pathname }) {
                     className="group flex items-center justify-between px-5 py-2.5 text-[14px] font-medium text-ink/80 transition-colors hover:bg-mist hover:text-navy"
                   >
                     {child.label}
-                    <ArrowRight size={14} className="-translate-x-1 text-gold opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                    <ArrowRight size={14} className="-translate-x-1 text-coral opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
                   </Link>
                 </li>
               ))}
@@ -120,7 +120,7 @@ function MobileMenu({ open, onClose, pathname }) {
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[60] lg:hidden">
+        <div className="fixed inset-0 z-[60] xl:hidden">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -158,7 +158,7 @@ function MobileMenu({ open, onClose, pathname }) {
                       <NavLink
                         to={item.to}
                         end={item.to === '/'}
-                        className={`flex min-h-[56px] flex-1 items-center font-serif text-[21px] font-semibold ${active ? 'text-gold-dark' : 'text-navy'}`}
+                        className={`flex min-h-[56px] flex-1 items-center font-display text-[21px] font-semibold ${active ? 'text-coral-dark' : 'text-navy'}`}
                       >
                         {item.label}
                       </NavLink>
@@ -199,20 +199,20 @@ function MobileMenu({ open, onClose, pathname }) {
               })}
             </ul>
             <div className="space-y-4 border-t border-line bg-mist px-5 py-6">
-              <Link to="/estimation" className="btn-gold w-full">
+              <Link to="/estimation" className="btn-coral w-full">
                 Estimer mon bien
                 <ArrowRight size={17} />
               </Link>
               <div className="flex items-center justify-between text-sm text-navy">
                 <a href={agency.phoneHref} className="inline-flex min-h-[44px] items-center gap-2 font-semibold">
-                  <Phone size={16} className="text-gold-dark" />
+                  <Phone size={16} className="text-coral-dark" />
                   {agency.phone}
                 </a>
                 <a href={`mailto:${agency.email}`} className="grid h-11 w-11 place-items-center" aria-label="Nous écrire par e-mail">
-                  <Mail size={18} className="text-gold-dark" />
+                  <Mail size={18} className="text-coral-dark" />
                 </a>
               </div>
-              <SocialLinks size={15} itemClassName="h-10 w-10 bg-navy text-white [--yt-play:#071D3B] hover:bg-gold hover:text-navy" />
+              <SocialLinks size={15} itemClassName="h-10 w-10 bg-navy text-white [--yt-play:#0E2552] hover:bg-coral hover:text-navy" />
             </div>
           </motion.nav>
         </div>
@@ -239,14 +239,14 @@ export default function Header() {
   return (
     <header
       className={`sticky top-0 z-50 bg-white/95 backdrop-blur-sm transition-shadow duration-300 supports-[backdrop-filter]:bg-white/90 ${
-        scrolled ? 'shadow-[0_8px_30px_-18px_rgba(7,29,59,.35)]' : 'shadow-[inset_0_-1px_0_#E4E7EC]'
+        scrolled ? 'shadow-[0_8px_30px_-18px_rgba(14,37,82,.3)]' : 'shadow-[inset_0_-1px_0_#E4E7EC]'
       }`}
     >
-      <div className={`container-site flex items-center justify-between gap-6 transition-[height] duration-300 ${scrolled ? 'h-[68px]' : 'h-[72px] lg:h-[84px]'}`}>
+      <div className={`container-site flex items-center justify-between gap-6 transition-[height] duration-300 ${scrolled ? 'h-[68px]' : 'h-[72px] lg:h-[80px]'}`}>
         <Logo />
 
-        <nav aria-label="Navigation principale" className="hidden h-full lg:block">
-          <ul className="flex h-full items-stretch gap-6 xl:gap-8">
+        <nav aria-label="Navigation principale" className="hidden h-full xl:block">
+          <ul className="flex h-full items-stretch gap-7">
             {navigation.map((item) => (
               <DesktopItem key={item.label} item={item} pathname={pathname} />
             ))}
@@ -261,19 +261,21 @@ export default function Header() {
           >
             <Heart size={20} strokeWidth={1.8} />
             {ids.length > 0 && (
-              <span className="absolute right-1 top-1 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-gold px-1 text-[10px] font-bold text-navy">
+              <span className="absolute right-1 top-1 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-coral px-1 text-[10px] font-bold text-white">
                 {ids.length}
               </span>
             )}
           </Link>
-          <Link to="/estimation" className="btn-gold hidden min-h-[46px] px-5 text-[14px] sm:inline-flex">
-            Estimer mon bien
-            <ArrowRight size={16} />
-          </Link>
+          <a href={agency.phoneHref} className="hidden items-center gap-2 text-[14px] font-semibold text-navy transition-colors hover:text-coral-dark md:inline-flex">
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-peach text-coral">
+              <Phone size={15} strokeWidth={2} aria-hidden="true" />
+            </span>
+            {agency.phone}
+          </a>
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className="grid h-11 w-11 place-items-center rounded-full text-navy hover:bg-mist lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full text-navy hover:bg-mist xl:hidden"
             aria-label="Ouvrir le menu"
             aria-expanded={menuOpen}
             aria-controls="menu-mobile"

@@ -120,6 +120,7 @@ export const properties = [
   {
     id: 'PI-1060',
     slug: 'villa-vue-mer-saint-tropez',
+    featured: true,
     transaction: 'achat',
     title: 'Villa avec piscine',
     type: 'Villa',
@@ -147,6 +148,7 @@ export const properties = [
   {
     id: 'PI-1068',
     slug: 'villa-architecte-biarritz',
+    featured: true,
     transaction: 'achat',
     title: "Villa d'architecte",
     type: 'Villa',

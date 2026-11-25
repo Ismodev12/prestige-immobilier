@@ -66,21 +66,21 @@ export default function ContactForm({ property, compact = false }) {
       <div className={`grid gap-5 ${compact ? '' : 'sm:grid-cols-2'}`}>
         <div className={compact ? '' : 'sm:col-span-2'}>
           <label htmlFor={`${id}-name`} className="field-label">
-            Nom et prénom <span className="text-gold-dark">*</span>
+            Nom et prénom <span className="text-coral-dark">*</span>
           </label>
           <input {...register('name', rules.name)} {...field('name')} autoComplete="name" className="field" placeholder="Jeanne Lefèvre" />
           <FieldError error={errors.name} id={`${id}-name-error`} />
         </div>
         <div>
           <label htmlFor={`${id}-email`} className="field-label">
-            Adresse e-mail <span className="text-gold-dark">*</span>
+            Adresse e-mail <span className="text-coral-dark">*</span>
           </label>
           <input {...register('email', rules.email)} {...field('email')} type="email" autoComplete="email" className="field" placeholder="nom@domaine.fr" />
           <FieldError error={errors.email} id={`${id}-email-error`} />
         </div>
         <div>
           <label htmlFor={`${id}-phone`} className="field-label">
-            Téléphone <span className="text-gold-dark">*</span>
+            Téléphone <span className="text-coral-dark">*</span>
           </label>
           <input {...register('phone', rules.phone)} {...field('phone')} type="tel" autoComplete="tel" className="field" placeholder="06 12 34 56 78" />
           <FieldError error={errors.phone} id={`${id}-phone-error`} />
@@ -99,7 +99,7 @@ export default function ContactForm({ property, compact = false }) {
         )}
         <div className={compact ? '' : 'sm:col-span-2'}>
           <label htmlFor={`${id}-message`} className="field-label">
-            Votre message <span className="text-gold-dark">*</span>
+            Votre message <span className="text-coral-dark">*</span>
           </label>
           <textarea
             {...register('message', {
@@ -121,7 +121,7 @@ export default function ContactForm({ property, compact = false }) {
             type="checkbox"
             {...register('consent', rules.consent)}
             aria-invalid={errors.consent ? 'true' : 'false'}
-            className="mt-0.5 h-[18px] w-[18px] shrink-0 cursor-pointer rounded-[3px] border-line accent-[#071D3B]"
+            className="mt-0.5 h-[18px] w-[18px] shrink-0 cursor-pointer rounded-[3px] border-line accent-[#0E2552]"
           />
           <span>J’accepte que Prestige Immobilier utilise mes coordonnées pour répondre à ma demande, conformément à la politique de confidentialité.</span>
         </label>
@@ -130,7 +130,7 @@ export default function ContactForm({ property, compact = false }) {
 
       <FormError message={serverError} />
 
-      <button type="submit" disabled={isSubmitting} className={`btn-gold ${compact ? 'w-full' : 'w-full sm:w-auto'}`}>
+      <button type="submit" disabled={isSubmitting} className={`btn-coral ${compact ? 'w-full' : 'w-full sm:w-auto'}`}>
         {isSubmitting ? (
           <>
             <Loader2 size={18} className="animate-spin" aria-hidden="true" />

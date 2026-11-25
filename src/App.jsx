@@ -22,7 +22,7 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 function PageLoader() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-label="Chargement de la page">
-      <span className="h-10 w-10 animate-spin rounded-full border-2 border-line border-t-gold" />
+      <span className="h-10 w-10 animate-spin rounded-full border-2 border-line border-t-coral" />
     </div>
   )
 }

@@ -95,7 +95,7 @@ function Filters({ filters, onChange, onReset, lockTransaction, idPrefix }) {
           ))}
         </select>
       </div>
-      <button type="button" onClick={onReset} className="inline-flex items-center gap-2 text-[14px] font-semibold text-navy hover:text-gold-dark">
+      <button type="button" onClick={onReset} className="inline-flex items-center gap-2 text-[14px] font-semibold text-navy hover:text-coral-dark">
         <RotateCcw size={15} />
         Réinitialiser les filtres
       </button>
@@ -140,7 +140,7 @@ export default function ListingView({ transaction }) {
         <aside className="hidden lg:block" aria-label="Filtres de recherche">
           <div className="sticky top-28 rounded-card border border-line bg-white p-6">
             <h2 className="mb-6 flex items-center gap-2 font-sans text-[13px] font-bold uppercase tracking-[0.14em] text-navy">
-              <SlidersHorizontal size={16} className="text-gold-dark" />
+              <SlidersHorizontal size={16} className="text-coral-dark" />
               Affiner la recherche
             </h2>
             {filterPanel}
@@ -150,7 +150,7 @@ export default function ListingView({ transaction }) {
         <div>
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-line pb-6">
             <p className="text-[15px] text-ink-muted" aria-live="polite">
-              <strong className="font-serif text-[22px] font-semibold text-navy">{results.length}</strong>{' '}
+              <strong className="font-display text-[22px] font-semibold text-navy">{results.length}</strong>{' '}
               {results.length > 1 ? 'biens correspondent' : 'bien correspond'} à votre recherche
             </p>
             <div className="flex items-center gap-3">
@@ -200,7 +200,7 @@ export default function ListingView({ transaction }) {
             </motion.ul>
           ) : (
             <div className="rounded-card border border-dashed border-navy/15 bg-mist px-6 py-16 text-center">
-              <SearchX size={40} strokeWidth={1.2} className="mx-auto text-gold-dark" aria-hidden="true" />
+              <SearchX size={40} strokeWidth={1.2} className="mx-auto text-coral-dark" aria-hidden="true" />
               <h2 className="mt-5 text-2xl font-semibold">Aucun bien ne correspond pour le moment</h2>
               <p className="mx-auto mt-3 max-w-md text-ink-muted">
                 Élargissez vos critères, ou confiez-nous votre recherche : nos conseillers vous présentent aussi des biens vendus en
@@ -220,7 +220,7 @@ export default function ListingView({ transaction }) {
           {results.length > 0 && (
             <p className="mt-10 text-center text-[14px] text-ink-muted">
               {plural(results.length, 'bien affiché', 'biens affichés')}. Vous ne trouvez pas votre bonheur ?{' '}
-              <Link to="/contact" className="font-semibold text-navy underline decoration-gold underline-offset-4 hover:text-gold-dark">
+              <Link to="/contact" className="font-semibold text-navy underline decoration-coral underline-offset-4 hover:text-coral-dark">
                 Confiez-nous votre recherche
               </Link>
               .
@@ -252,7 +252,7 @@ export default function ListingView({ transaction }) {
               </div>
               <div className="flex-1 overflow-y-auto px-5 py-6">{filterPanel}</div>
               <div className="border-t border-line p-4">
-                <button type="button" onClick={() => setDrawer(false)} className="btn-gold w-full">
+                <button type="button" onClick={() => setDrawer(false)} className="btn-coral w-full">
                   Voir {plural(results.length, 'bien')}
                 </button>
               </div>

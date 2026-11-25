@@ -24,10 +24,10 @@ export default function Faq() {
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
                     aria-controls={`faq-${i}`}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left font-serif text-[19px] font-semibold text-navy sm:text-[21px]"
+                    className="flex w-full items-center justify-between gap-6 py-6 text-left font-display text-[19px] font-semibold text-navy sm:text-[21px]"
                   >
                     {item.q}
-                    <Plus size={20} className={`shrink-0 text-gold-dark transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`} />
+                    <Plus size={20} className={`shrink-0 text-coral-dark transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`} />
                   </button>
                 </h2>
                 <AnimatePresence initial={false}>
@@ -50,7 +50,7 @@ export default function Faq() {
         </ul>
         <p className="mt-10 text-center text-ink-muted">
           Vous ne trouvez pas votre réponse ?{' '}
-          <Link to="/contact" className="font-semibold text-navy underline decoration-gold underline-offset-4">
+          <Link to="/contact" className="font-semibold text-navy underline decoration-coral underline-offset-4">
             Contactez-nous
           </Link>
           .

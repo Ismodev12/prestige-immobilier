@@ -29,10 +29,10 @@ function ChoiceCard({ register, name, value, rulesConfig, children, invalid }) {
   return (
     <label className="relative block cursor-pointer">
       <input type="radio" value={value} {...register(name, rulesConfig)} className="peer sr-only" aria-invalid={invalid ? 'true' : 'false'} />
-      <span className="flex h-full items-center gap-3 rounded-[4px] border border-line bg-white p-4 transition-all duration-200 hover:border-navy/30 peer-checked:border-gold peer-checked:bg-gold-soft peer-checked:shadow-[0_0_0_1px_#D5A447] peer-focus-visible:ring-2 peer-focus-visible:ring-gold/40">
+      <span className="flex h-full items-center gap-3 rounded-[4px] border border-line bg-white p-4 transition-all duration-200 hover:border-navy/30 peer-checked:border-coral peer-checked:bg-peach peer-checked:shadow-[0_0_0_1px_#D85C45] peer-focus-visible:ring-2 peer-focus-visible:ring-coral/40">
         {children}
       </span>
-      <Check size={16} className="absolute right-3 top-3 hidden text-gold-dark peer-checked:block" aria-hidden="true" />
+      <Check size={16} className="absolute right-3 top-3 hidden text-coral-dark peer-checked:block" aria-hidden="true" />
     </label>
   )
 }
@@ -101,9 +101,9 @@ export default function EstimateForm() {
       <ol className="mb-10 grid grid-cols-3 gap-3" aria-label="Étapes du formulaire">
         {steps.map((s, i) => (
           <li key={s.title} aria-current={i === step ? 'step' : undefined}>
-            <span className={`block h-[3px] rounded-full transition-colors duration-500 ${i <= step ? 'bg-gold' : 'bg-line'}`} />
+            <span className={`block h-[3px] rounded-full transition-colors duration-500 ${i <= step ? 'bg-coral' : 'bg-line'}`} />
             <span className={`mt-3 flex items-center gap-2 text-[12.5px] font-semibold sm:text-[13.5px] ${i <= step ? 'text-navy' : 'text-ink-muted'}`}>
-              <span className="font-serif text-gold-dark">{i + 1}.</span>
+              <span className="font-display text-coral-dark">{i + 1}.</span>
               <span className="truncate">{s.title}</span>
             </span>
           </li>
@@ -122,12 +122,12 @@ export default function EstimateForm() {
               <>
                 <fieldset>
                   <legend className="field-label">
-                    Type de bien <span className="text-gold-dark">*</span>
+                    Type de bien <span className="text-coral-dark">*</span>
                   </legend>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                     {types.map(({ value, icon: Icon }) => (
                       <ChoiceCard key={value} register={register} name="type" value={value} invalid={errors.type} rulesConfig={{ required: 'Merci de sélectionner le type de bien.' }}>
-                        <Icon size={20} strokeWidth={1.5} className="text-gold-dark" aria-hidden="true" />
+                        <Icon size={20} strokeWidth={1.5} className="text-coral-dark" aria-hidden="true" />
                         <span className="text-[15px] font-semibold text-navy">{value}</span>
                       </ChoiceCard>
                     ))}
@@ -136,7 +136,7 @@ export default function EstimateForm() {
                 </fieldset>
                 <div>
                   <label htmlFor={`${id}-address`} className="field-label">
-                    Adresse du bien <span className="text-gold-dark">*</span>
+                    Adresse du bien <span className="text-coral-dark">*</span>
                   </label>
                   <input
                     {...register('address', { required: "Merci d'indiquer l'adresse du bien.", minLength: { value: 5, message: 'Adresse incomplète.' } })}
@@ -150,7 +150,7 @@ export default function EstimateForm() {
                 <div className="grid gap-5 sm:grid-cols-[1fr_2fr]">
                   <div>
                     <label htmlFor={`${id}-postalCode`} className="field-label">
-                      Code postal <span className="text-gold-dark">*</span>
+                      Code postal <span className="text-coral-dark">*</span>
                     </label>
                     <input
                       {...register('postalCode', {
@@ -168,7 +168,7 @@ export default function EstimateForm() {
                   </div>
                   <div>
                     <label htmlFor={`${id}-city`} className="field-label">
-                      Ville <span className="text-gold-dark">*</span>
+                      Ville <span className="text-coral-dark">*</span>
                     </label>
                     <input {...register('city', { required: 'Ville requise.' })} {...field('city')} autoComplete="address-level2" className="field" placeholder="Paris" />
                     <FieldError error={errors.city} id={`${id}-city-error`} />
@@ -182,7 +182,7 @@ export default function EstimateForm() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor={`${id}-surface`} className="field-label">
-                      Surface habitable (m²) <span className="text-gold-dark">*</span>
+                      Surface habitable (m²) <span className="text-coral-dark">*</span>
                     </label>
                     <input
                       {...register('surface', {
@@ -201,7 +201,7 @@ export default function EstimateForm() {
                   </div>
                   <div>
                     <label htmlFor={`${id}-bedrooms`} className="field-label">
-                      Nombre de chambres <span className="text-gold-dark">*</span>
+                      Nombre de chambres <span className="text-coral-dark">*</span>
                     </label>
                     <select {...register('bedrooms', { required: 'Merci de préciser le nombre de chambres.' })} {...field('bedrooms')} className="field">
                       <option value="">Sélectionner</option>
@@ -218,7 +218,7 @@ export default function EstimateForm() {
                 </div>
                 <fieldset>
                   <legend className="field-label">
-                    État du bien <span className="text-gold-dark">*</span>
+                    État du bien <span className="text-coral-dark">*</span>
                   </legend>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {conditions.map((c) => (
@@ -245,7 +245,7 @@ export default function EstimateForm() {
               <>
                 <div>
                   <label htmlFor={`${id}-name`} className="field-label">
-                    Nom et prénom <span className="text-gold-dark">*</span>
+                    Nom et prénom <span className="text-coral-dark">*</span>
                   </label>
                   <input {...register('name', rules.name)} {...field('name')} autoComplete="name" className="field" placeholder="Jeanne Lefèvre" />
                   <FieldError error={errors.name} id={`${id}-name-error`} />
@@ -253,14 +253,14 @@ export default function EstimateForm() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor={`${id}-email`} className="field-label">
-                      Adresse e-mail <span className="text-gold-dark">*</span>
+                      Adresse e-mail <span className="text-coral-dark">*</span>
                     </label>
                     <input {...register('email', rules.email)} {...field('email')} type="email" autoComplete="email" className="field" placeholder="nom@domaine.fr" />
                     <FieldError error={errors.email} id={`${id}-email-error`} />
                   </div>
                   <div>
                     <label htmlFor={`${id}-phone`} className="field-label">
-                      Téléphone <span className="text-gold-dark">*</span>
+                      Téléphone <span className="text-coral-dark">*</span>
                     </label>
                     <input {...register('phone', rules.phone)} {...field('phone')} type="tel" autoComplete="tel" className="field" placeholder="06 12 34 56 78" />
                     <FieldError error={errors.phone} id={`${id}-phone-error`} />
@@ -268,7 +268,7 @@ export default function EstimateForm() {
                 </div>
                 <div>
                   <label className="flex cursor-pointer items-start gap-3 text-[13px] leading-relaxed text-ink-muted">
-                    <input type="checkbox" {...register('consent', rules.consent)} className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#071D3B]" />
+                    <input type="checkbox" {...register('consent', rules.consent)} className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#0E2552]" />
                     <span>J’accepte d’être recontacté par un expert de Prestige Immobilier au sujet de mon estimation.</span>
                   </label>
                   <FieldError error={errors.consent} id={`${id}-consent-error`} />
@@ -280,7 +280,7 @@ export default function EstimateForm() {
 
         <div className="mt-10 flex flex-col-reverse gap-3 border-t border-line pt-7 sm:flex-row sm:items-center sm:justify-between">
           {step > 0 ? (
-            <button type="button" onClick={() => setStep((s) => s - 1)} className="btn justify-start px-0 text-navy hover:text-gold-dark">
+            <button type="button" onClick={() => setStep((s) => s - 1)} className="btn justify-start px-0 text-navy hover:text-coral-dark">
               <ArrowLeft size={17} />
               Étape précédente
             </button>
@@ -293,7 +293,7 @@ export default function EstimateForm() {
               <ArrowRight size={17} />
             </button>
           ) : (
-            <button type="submit" disabled={isSubmitting} className="btn-gold">
+            <button type="submit" disabled={isSubmitting} className="btn-coral">
               {isSubmitting ? (
                 <>
                   <Loader2 size={18} className="animate-spin" aria-hidden="true" />

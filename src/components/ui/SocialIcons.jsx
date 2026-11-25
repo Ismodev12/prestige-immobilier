@@ -22,7 +22,7 @@ const icons = {
   YouTube: (
     <g>
       <rect x="3" y="6" width="18" height="12" rx="3.5" fill="currentColor" />
-      <path d="m10.3 9.4 4.6 2.6-4.6 2.6V9.4Z" fill="var(--yt-play, #071D3B)" />
+      <path d="m10.3 9.4 4.6 2.6-4.6 2.6V9.4Z" fill="var(--yt-play, #0E2552)" />
     </g>
   ),
 }

@@ -16,7 +16,7 @@ import NotFound from './NotFound'
 function Fact({ icon: Icon, label, value }) {
   return (
     <div className="flex items-center gap-3.5">
-      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold-soft text-gold-dark">
+      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-peach text-coral-dark">
         <Icon size={19} strokeWidth={1.5} aria-hidden="true" />
       </span>
       <div>
@@ -86,13 +86,13 @@ export default function PropertyDetails() {
               {property.title} à {property.city}
             </h1>
             <p className="mt-3 flex items-center gap-2 text-[15px] text-ink-muted">
-              <MapPin size={16} className="text-gold-dark" aria-hidden="true" />
+              <MapPin size={16} className="text-coral-dark" aria-hidden="true" />
               {property.district}, {property.postalCode} {property.city.replace(/ \d+e$/, '')}
             </p>
           </div>
           <div className="flex items-end justify-between gap-6 lg:flex-col lg:items-end">
             <div className="lg:text-right">
-              <p className="font-serif text-[34px] font-semibold leading-none text-navy sm:text-[40px]">{formatListingPrice(property)}</p>
+              <p className="font-display text-[34px] font-semibold leading-none text-navy sm:text-[40px]">{formatListingPrice(property)}</p>
               <p className="mt-2 text-[13px] text-ink-muted">
                 {isRental ? 'Charges comprises' : `Honoraires à la charge du vendeur · ${formatNumber(pricePerM2)} € / m²`}
               </p>
@@ -147,7 +147,7 @@ export default function PropertyDetails() {
             <ul className="grid gap-x-8 gap-y-3.5 sm:grid-cols-2">
               {property.features.map((feature) => (
                 <li key={feature} className="flex items-center gap-3 text-[15px] text-ink">
-                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-navy text-gold-light">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-navy text-coral-light">
                     <Check size={13} strokeWidth={2.5} aria-hidden="true" />
                   </span>
                   {feature}
@@ -155,7 +155,7 @@ export default function PropertyDetails() {
               ))}
               {property.furnished && (
                 <li className="flex items-center gap-3 text-[15px] text-ink">
-                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-navy text-gold-light">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-navy text-coral-light">
                     <Check size={13} strokeWidth={2.5} aria-hidden="true" />
                   </span>
                   Location meublée
@@ -207,10 +207,10 @@ export default function PropertyDetails() {
               <div className="mb-6 flex items-center gap-4 border-b border-line pb-6">
                 <img src={advisor.photo} alt={`Portrait de ${advisor.name}`} className="h-16 w-16 rounded-full object-cover object-top" loading="lazy" />
                 <div>
-                  <p className="font-serif text-[18px] font-semibold text-navy">{advisor.name}</p>
+                  <p className="font-display text-[18px] font-semibold text-navy">{advisor.name}</p>
                   <p className="text-[13px] text-ink-muted">{advisor.role}</p>
-                  <a href={`tel:${advisor.phone.replace(/\s/g, '')}`} className="mt-1 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-navy hover:text-gold-dark">
-                    <Phone size={13} className="text-gold-dark" />
+                  <a href={`tel:${advisor.phone.replace(/\s/g, '')}`} className="mt-1 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-navy hover:text-coral-dark">
+                    <Phone size={13} className="text-coral-dark" />
                     {advisor.phone}
                   </a>
                 </div>

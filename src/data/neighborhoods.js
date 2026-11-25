@@ -26,4 +26,13 @@ export const neighborhoods = [
     priceM2: '14 100 €',
     query: 'Paris',
   },
+  {
+    slug: 'passy',
+    name: 'Passy',
+    image: '/images/quartier-passy.webp',
+    alt: 'Façades d’immeubles parisiens à balcons dans le 16e arrondissement',
+    intro: 'Le calme résidentiel du 16e, entre jardins du Ranelagh et bords de Seine.',
+    priceM2: '11 900 €',
+    query: 'Paris 16',
+  },
 ]

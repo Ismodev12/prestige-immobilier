@@ -24,7 +24,7 @@ export default function FavoriteButton({ property, className = '', withLabel = f
       <Heart
         size={18}
         strokeWidth={1.8}
-        className={active ? 'fill-gold text-gold' : ''}
+        className={active ? 'fill-coral text-coral' : ''}
       />
       {withLabel && <span>{active ? 'Dans vos favoris' : 'Ajouter aux favoris'}</span>}
     </motion.button>

@@ -15,7 +15,7 @@ export default function EstimateSection() {
         <Reveal className="relative overflow-hidden rounded-card bg-navy">
           <div className="grid lg:grid-cols-[1.15fr_1fr]">
             <div className="relative z-10 px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
-              <p className="eyebrow text-gold-light before:bg-gold-light">Estimation offerte</p>
+              <p className="eyebrow text-coral-light before:bg-coral-light">Estimation offerte</p>
               <h2 id="estimation-titre" className="mt-5 text-balance text-[32px] font-semibold leading-[1.12] text-white sm:text-[42px]">
                 Estimez gratuitement votre bien
               </h2>
@@ -25,17 +25,17 @@ export default function EstimateSection() {
               <ol className="mt-9 grid gap-4 sm:grid-cols-3 sm:gap-6">
                 {steps.map(({ icon: Icon, label }, i) => (
                   <li key={label} className="flex items-center gap-3 text-[14px] text-white/85 sm:flex-col sm:items-start">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold/40 text-gold-light">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-coral/40 text-coral-light">
                       <Icon size={18} strokeWidth={1.5} aria-hidden="true" />
                     </span>
                     <span>
-                      <span className="mr-1.5 font-serif text-gold-light">{i + 1}.</span>
+                      <span className="mr-1.5 font-display text-coral-light">{i + 1}.</span>
                       {label}
                     </span>
                   </li>
                 ))}
               </ol>
-              <Link to="/estimation" className="btn-gold mt-10">
+              <Link to="/estimation" className="btn-coral mt-10">
                 Commencer l'estimation
                 <ArrowRight size={17} />
               </Link>

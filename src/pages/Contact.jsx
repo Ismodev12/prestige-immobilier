@@ -34,13 +34,13 @@ export default function Contact() {
           <ul className="divide-y divide-line rounded-card border border-line">
             {channels.map(({ icon: Icon, label, value, href }) => (
               <li key={label} className="flex items-start gap-4 p-5">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold-soft text-gold-dark">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-peach text-coral-dark">
                   <Icon size={18} strokeWidth={1.6} />
                 </span>
                 <div className="min-w-0">
                   <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-muted">{label}</p>
                   {href ? (
-                    <a href={href} className="break-words font-semibold text-navy hover:text-gold-dark">
+                    <a href={href} className="break-words font-semibold text-navy hover:text-coral-dark">
                       {value}
                     </a>
                   ) : (
@@ -52,7 +52,7 @@ export default function Contact() {
           </ul>
           <div className="rounded-card bg-navy p-6 text-white">
             <p className="flex items-center gap-2 font-semibold">
-              <Clock size={17} className="text-gold" /> Horaires d’ouverture
+              <Clock size={17} className="text-coral" /> Horaires d’ouverture
             </p>
             <dl className="mt-4 space-y-2.5 text-[14px]">
               {agency.hours.map((h) => (

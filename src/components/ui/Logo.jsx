@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 
 /**
- * Logo Prestige Immobilier.
- * variant="lockup" : emblème original (maison et immeubles) + nom composé en Playfair, pour le header où le
- *   logo complet serait illisible à petite taille.
- * variant="full"   : logo original complet, pour le footer et les grands formats.
+ * Logo Prestige Immobilier (dessin d'origine, tons dorés convertis en corail).
+ * variant="lockup" : emblème + nom composé, lisible dans le header.
+ * variant="full"   : logo complet, pour le footer et les grands formats.
  */
 export default function Logo({ variant = 'lockup', light = false, className = '' }) {
   if (variant === 'full') {
@@ -22,25 +21,11 @@ export default function Logo({ variant = 'lockup', light = false, className = ''
   }
 
   return (
-    <Link
-      to="/"
-      className={`group inline-flex items-center gap-3 ${className}`}
-      aria-label="Prestige Immobilier, retour à l'accueil"
-    >
-      <img
-        src={light ? '/brand/emblem-light.webp' : '/brand/emblem.webp'}
-        alt=""
-        width="360"
-        height="162"
-        className="h-9 w-auto sm:h-10"
-      />
+    <Link to="/" className={`group inline-flex items-center gap-2.5 ${className}`} aria-label="Prestige Immobilier, retour à l'accueil">
+      <img src={light ? '/brand/emblem-light.webp' : '/brand/emblem.webp'} alt="" width="360" height="162" className="h-8 w-auto sm:h-9" />
       <span className="flex flex-col leading-none">
-        <span className={`font-serif text-[21px] font-bold tracking-[-0.01em] sm:text-[23px] ${light ? 'text-white' : 'text-navy'}`}>
-          Prestige
-        </span>
-        <span className="mt-1 font-serif text-[9.5px] font-semibold uppercase tracking-[0.42em] text-gold-dark sm:text-[10px]">
-          Immobilier
-        </span>
+        <span className={`font-display text-[19px] font-semibold tracking-[-0.01em] sm:text-[20px] ${light ? 'text-white' : 'text-navy'}`}>Prestige</span>
+        <span className="mt-[3px] font-display text-[8.5px] font-medium uppercase tracking-[0.38em] text-coral">Immobilier</span>
       </span>
     </Link>
   )
