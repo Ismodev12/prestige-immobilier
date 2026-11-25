@@ -1,0 +1,60 @@
+export const posts = [
+  {
+    slug: 'investir-a-paris-les-cles',
+    title: 'Investir à Paris : les clés pour bien choisir son quartier',
+    category: 'Investissement',
+    date: '2026-11-12',
+    readingTime: 6,
+    image: '/images/blog-investir.webp',
+    alt: 'Vue aérienne des immeubles haussmanniens de Paris',
+    excerpt:
+      'Rendement, potentiel de valorisation, transports : notre méthode pour comparer les arrondissements avant d’acheter.',
+    body: [
+      { type: 'p', text: 'Acheter pour investir à Paris ne se résume pas au prix au mètre carré. Trois critères pèsent davantage sur la rentabilité à long terme : la qualité de l’immeuble, la desserte et la profondeur de la demande locative.' },
+      { type: 'h2', text: 'Regarder l’immeuble avant l’appartement' },
+      { type: 'p', text: 'Procès-verbaux d’assemblée générale, travaux votés, état des parties communes : ces documents révèlent souvent plus qu’une visite. Un ravalement à venir peut représenter plusieurs milliers d’euros.' },
+      { type: 'h2', text: 'Privilégier la desserte' },
+      { type: 'p', text: 'Un bien situé à moins de cinq minutes d’une station de métro se loue plus vite et se revend mieux. Les futures gares du Grand Paris Express redessinent aussi la carte des opportunités.' },
+      { type: 'h2', text: 'Se faire accompagner' },
+      { type: 'p', text: 'Nos conseillers analysent pour vous chaque dossier et vous transmettent une simulation de rendement nette de charges avant toute offre.' },
+    ],
+  },
+  {
+    slug: 'vivre-a-saint-germain',
+    title: 'Vivre à Saint-Germain-des-Prés : ce qu’il faut savoir',
+    category: 'Quartiers',
+    date: '2026-10-28',
+    readingTime: 4,
+    image: '/images/blog-quartiers.webp',
+    alt: 'Terrasse d’un restaurant parisien en fin de journée',
+    excerpt:
+      'Ambiance, écoles, prix et type de biens : portrait d’un quartier mythique de la rive gauche.',
+    body: [
+      { type: 'p', text: 'Saint-Germain-des-Prés reste l’une des adresses les plus convoitées de la capitale. Son parc immobilier est majoritairement composé d’immeubles des XVIIe et XVIIIe siècles.' },
+      { type: 'h2', text: 'Un marché rare' },
+      { type: 'p', text: 'Les biens familiaux de plus de 100 m² y sont peu nombreux et se négocient rapidement. Être prêt financièrement avant les visites est un vrai avantage.' },
+      { type: 'h2', text: 'Une vie de quartier préservée' },
+      { type: 'p', text: 'Librairies, marchés couverts et jardins du Luxembourg à proximité : le quartier conjugue prestige et douceur de vivre au quotidien.' },
+    ],
+  },
+  {
+    slug: 'vendre-au-meilleur-prix',
+    title: 'Vendre au meilleur prix : cinq erreurs à éviter',
+    category: 'Conseils vendeurs',
+    date: '2026-10-09',
+    readingTime: 5,
+    image: '/images/blog-vendre.webp',
+    alt: 'La tour Eiffel vue depuis le Trocadéro au coucher du soleil',
+    excerpt:
+      'Prix surévalué, photos approximatives, diagnostics en retard : les pièges qui allongent un délai de vente.',
+    body: [
+      { type: 'p', text: 'Un bien bien présenté et estimé au juste prix se vend en moyenne deux fois plus vite. Voici les erreurs que nous rencontrons le plus souvent.' },
+      { type: 'h2', text: '1. Surestimer son bien' },
+      { type: 'p', text: 'Un prix trop élevé décourage les acquéreurs dès les premières semaines, période où l’annonce attire le plus de visites.' },
+      { type: 'h2', text: '2. Négliger la présentation' },
+      { type: 'p', text: 'Photographies professionnelles, rangement et petites réparations changent radicalement la perception d’un logement.' },
+      { type: 'h2', text: '3. Tarder sur les diagnostics' },
+      { type: 'p', text: 'Le dossier de diagnostics techniques est obligatoire dès la promesse de vente. L’anticiper évite des semaines d’attente.' },
+    ],
+  },
+]
