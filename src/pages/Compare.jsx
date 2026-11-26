@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeftRight, Check, Minus, Trophy, X } from 'lucide-react'
 import PageHero from '../components/ui/PageHero'
@@ -52,6 +53,39 @@ export default function Compare() {
   const list = ids.map((id) => properties.find((p) => p.id === id)).filter(Boolean)
   const rows = buildRows(settings)
 
+  // Bandeau collant : rappelle quel bien correspond à chaque colonne une fois l'en-tête du tableau passé sous le menu.
+  const HEADER_OFFSET = 68 // hauteur du header du site une fois la page défilée
+  const scrollRef = useRef(null)
+  const tableRef = useRef(null)
+  const theadRef = useRef(null)
+  const barTrackRef = useRef(null)
+  const [widths, setWidths] = useState([])
+  const [showBar, setShowBar] = useState(false)
+
+  useEffect(() => {
+    const table = tableRef.current
+    if (!table) return
+    const measure = () => setWidths([...theadRef.current.querySelectorAll('th')].map((th) => th.getBoundingClientRect().width))
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(table)
+    const onScroll = () => {
+      const head = theadRef.current.getBoundingClientRect()
+      const body = table.getBoundingClientRect()
+      setShowBar(head.bottom < HEADER_OFFSET + 8 && body.bottom > HEADER_OFFSET + 140)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [list.length])
+
+  const syncBar = () => {
+    if (barTrackRef.current && scrollRef.current) barTrackRef.current.style.transform = `translateX(${-scrollRef.current.scrollLeft}px)`
+  }
+
   const bestIndex = (row) => {
     if (!row.score || list.length < 2) return -1
     const scores = list.map((p) => (row.render(p) === null ? -Infinity : row.score(p)))
@@ -91,16 +125,49 @@ export default function Compare() {
               </button>
             </div>
 
-            <div className="no-scrollbar -mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
-              <table className="w-full min-w-[640px] table-fixed border-collapse text-left text-[14px]">
+            {/* Bandeau collant sous le menu, synchronisé avec le défilement horizontal du tableau. */}
+            <div className="sticky top-[68px] z-30 h-0" aria-hidden="true">
+              <div
+                className={`absolute -inset-x-5 top-0 overflow-hidden border-b border-line bg-white/95 shadow-[0_10px_24px_-18px_rgba(14,37,82,.45)] backdrop-blur transition-all duration-300 sm:inset-x-0 ${
+                  showBar ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-2 opacity-0'
+                }`}
+              >
+                <div className="flex">
+                  <div className="flex shrink-0 items-center pl-5 pr-3 text-[11px] sm:pl-3 font-semibold uppercase tracking-[0.1em] text-ink-muted" style={{ width: widths[0] }}>
+                    Biens
+                  </div>
+                  <div className="min-w-0 flex-1 overflow-hidden">
+                    <div ref={barTrackRef} className="flex will-change-transform">
+                      {list.map((p, i) => (
+                        <Link
+                          key={p.id}
+                          to={`/biens/${p.slug}`}
+                          tabIndex={-1}
+                          className="flex shrink-0 items-center gap-2.5 px-3 py-2.5"
+                          style={{ width: widths[i + 1] }}
+                        >
+                          <img src={p.images[0]} alt="" className="h-9 w-12 shrink-0 object-cover" />
+                          <span className="line-clamp-2 text-[12.5px] font-semibold leading-snug text-navy">
+                            {p.title} à {p.city}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div ref={scrollRef} onScroll={syncBar} className="no-scrollbar -mx-5 overflow-x-auto pr-5 sm:mx-0 sm:pr-0">
+              <table ref={tableRef} className="w-full table-fixed border-collapse text-left text-[14px]" style={{ minWidth: 132 + list.length * 170 }}>
                 <caption className="sr-only">Comparaison des biens sélectionnés</caption>
-                <thead>
+                <thead ref={theadRef}>
                   <tr>
-                    <th scope="col" className="sticky left-0 z-10 w-[170px] bg-white p-3 align-bottom text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-muted sm:w-[210px]">
+                    <th scope="col" className="sticky left-0 z-10 w-[132px] bg-white p-3 pl-5 align-bottom sm:w-[200px] sm:pl-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-muted sm:text-[12px]">
                       Critère
                     </th>
                     {list.map((p) => (
-                      <th key={p.id} scope="col" className="min-w-[200px] p-3 align-top font-normal">
+                      <th key={p.id} scope="col" className="p-3 align-top font-normal">
                         <div className="relative">
                           <img src={p.images[0]} alt="" className="aspect-[4/3] w-full object-cover" />
                           <button
@@ -125,7 +192,7 @@ export default function Compare() {
                     const best = bestIndex(row)
                     return (
                       <tr key={row.label} className="border-t border-line">
-                        <th scope="row" className="sticky left-0 z-10 bg-white p-3 align-top font-semibold text-navy">
+                        <th scope="row" className="sticky left-0 z-10 bg-white p-3 pl-5 align-top font-semibold text-navy sm:pl-3">
                           {row.label}
                           {row.hint && <span className="mt-1 block text-[11.5px] font-normal leading-snug text-ink-muted">{row.hint}</span>}
                         </th>
@@ -150,7 +217,7 @@ export default function Compare() {
                     )
                   })}
                   <tr className="border-t border-line">
-                    <th scope="row" className="sticky left-0 z-10 bg-white p-3 align-top font-semibold text-navy">
+                    <th scope="row" className="sticky left-0 z-10 bg-white p-3 pl-5 align-top font-semibold text-navy sm:pl-3">
                       Prestations
                     </th>
                     {list.map((p) => (
@@ -167,7 +234,7 @@ export default function Compare() {
                     ))}
                   </tr>
                   <tr className="border-t border-line">
-                    <th scope="row" className="sticky left-0 z-10 bg-white p-3" aria-label="Actions" />
+                    <th scope="row" className="sticky left-0 z-10 bg-white p-3 pl-5 sm:pl-3" aria-label="Actions" />
                     {list.map((p) => (
                       <td key={p.id} className="p-3">
                         <Link to={`/biens/${p.slug}#visite`} className="btn-coral w-full px-3">
