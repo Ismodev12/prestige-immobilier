@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, ChevronDown, Heart, Mail, Menu, Phone, X } from 'lucide-react'
@@ -102,25 +103,47 @@ function DesktopItem({ item, pathname }) {
   )
 }
 
+// Le menu mobile est rendu dans <body> via un portail : le header utilise un flou d'arrière-plan
+// (backdrop-filter), qui ferait sinon positionner le panneau « fixed » par rapport au header et non à l'écran.
 function MobileMenu({ open, onClose, pathname }) {
   const [expanded, setExpanded] = useState(null)
+  const panelRef = useRef(null)
+  const closeRef = useRef(null)
 
   useEffect(() => {
     if (!open) return
+    const opener = document.activeElement
     const previous = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    const onKey = (e) => e.key === 'Escape' && onClose()
+    requestAnimationFrame(() => closeRef.current?.focus())
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose()
+      // Garde le focus clavier dans le menu tant qu'il est ouvert.
+      if (e.key === 'Tab' && panelRef.current) {
+        const items = panelRef.current.querySelectorAll('a[href], button:not([disabled])')
+        const first = items[0]
+        const last = items[items.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
     document.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = previous
       document.removeEventListener('keydown', onKey)
+      opener?.focus?.({ preventScroll: true })
     }
   }, [open, onClose])
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[60] xl:hidden">
+        <div className="fixed inset-0 z-[60] xl:hidden" role="dialog" aria-modal="true" aria-label="Menu de navigation">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -129,6 +152,7 @@ function MobileMenu({ open, onClose, pathname }) {
             onClick={onClose}
           />
           <motion.nav
+            ref={panelRef}
             id="menu-mobile"
             aria-label="Menu principal"
             initial={{ x: '100%' }}
@@ -140,6 +164,7 @@ function MobileMenu({ open, onClose, pathname }) {
             <div className="flex h-[72px] items-center justify-between border-b border-line px-5">
               <Logo />
               <button
+                ref={closeRef}
                 type="button"
                 onClick={onClose}
                 className="grid h-11 w-11 place-items-center rounded-full text-navy hover:bg-mist"
@@ -158,7 +183,7 @@ function MobileMenu({ open, onClose, pathname }) {
                       <NavLink
                         to={item.to}
                         end={item.to === '/'}
-                        className={`flex min-h-[56px] flex-1 items-center font-display text-[21px] font-semibold ${active ? 'text-coral-dark' : 'text-navy'}`}
+                        className={`flex min-h-[54px] flex-1 items-center font-display text-[19px] font-medium ${active ? 'text-coral-dark' : 'text-navy'}`}
                       >
                         {item.label}
                       </NavLink>
@@ -217,12 +242,14 @@ function MobileMenu({ open, onClose, pathname }) {
           </motion.nav>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   )
 }
 
 export default function Header() {
-  const { pathname } = useLocation()
+  const location = useLocation()
+  const { pathname } = location
   const { ids } = useFavorites()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -234,7 +261,8 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => setMenuOpen(false), [pathname])
+  useEffect(() => setMenuOpen(false), [location.key])
+  const closeMenu = useCallback(() => setMenuOpen(false), [])
 
   return (
     <header
@@ -284,7 +312,7 @@ export default function Header() {
           </button>
         </div>
       </div>
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} pathname={pathname} />
+      <MobileMenu open={menuOpen} onClose={closeMenu} pathname={pathname} />
     </header>
   )
 }

@@ -102,9 +102,9 @@ export default function EstimateForm() {
         {steps.map((s, i) => (
           <li key={s.title} aria-current={i === step ? 'step' : undefined}>
             <span className={`block h-[3px] rounded-full transition-colors duration-500 ${i <= step ? 'bg-coral' : 'bg-line'}`} />
-            <span className={`mt-3 flex items-center gap-2 text-[12.5px] font-semibold sm:text-[13.5px] ${i <= step ? 'text-navy' : 'text-ink-muted'}`}>
+            <span className={`mt-3 flex items-start gap-1.5 text-[12px] font-semibold sm:gap-2 sm:text-[13.5px] ${i <= step ? 'text-navy' : 'text-ink-muted'}`}>
               <span className="font-display text-coral-dark">{i + 1}.</span>
-              <span className="truncate">{s.title}</span>
+              <span className="leading-tight">{s.title}</span>
             </span>
           </li>
         ))}

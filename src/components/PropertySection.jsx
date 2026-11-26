@@ -19,9 +19,9 @@ export default function PropertySection() {
             </>
           }
         />
-        <ul className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-7 sm:gap-y-10 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
           {featuredProperties.map((property, index) => (
-            <Reveal as="li" key={property.id} delay={(index % 3) * 0.08}>
+            <Reveal as="li" key={property.id} delay={(index % 3) * 0.08} className="w-[84%] shrink-0 snap-start sm:w-auto">
               <PropertyCard property={property} />
             </Reveal>
           ))}

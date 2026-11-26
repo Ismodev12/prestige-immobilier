@@ -124,7 +124,8 @@ export default function Simulator() {
           </dl>
 
           <Link to={`/acheter?budget=${result.price}`} className="btn-coral mt-8 w-full sm:w-auto">
-            Voir les {plural(matches.length, 'bien')} dans mon budget <ArrowRight size={16} />
+            {matches.length === 0 ? 'Voir les biens à vendre' : matches.length === 1 ? 'Voir le bien dans mon budget' : `Voir les ${matches.length} biens dans mon budget`}{' '}
+            <ArrowRight size={16} />
           </Link>
           <p className="mt-6 flex gap-2 text-[12px] leading-relaxed text-white/60">
             <Info size={14} className="mt-0.5 shrink-0 text-coral-light" aria-hidden="true" />

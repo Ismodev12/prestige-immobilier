@@ -12,6 +12,8 @@
   ::selection { background: #FCE3DB; color: #0E2552; }
   :focus-visible { outline: 2px solid #D85C45; outline-offset: 3px; }
   img { @apply max-w-full; }
+  /* Une grille sans colonnes déclarées ne doit jamais s'élargir au-delà de l'écran (images, textes longs). */
+  [class~='grid'] { grid-template-columns: minmax(0, 1fr); }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
