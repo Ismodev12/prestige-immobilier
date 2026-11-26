@@ -23,8 +23,8 @@ export default function Hero() {
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-peach">
       <span className="deco-square -left-6 top-24 hidden lg:block" aria-hidden="true" />
-      <div className="container-site relative grid items-end gap-6 pt-12 lg:grid-cols-[1.05fr_1fr] lg:pt-6">
-        <div className="pb-14 lg:pb-36 lg:pt-16">
+      <div className="container-site relative grid grid-cols-1 items-end gap-6 pt-12 lg:grid-cols-[1.05fr_1fr] lg:pt-6">
+        <div className="min-w-0 pb-14 lg:pb-36 lg:pt-16">
           <motion.p {...fade(0.05)} className="text-[13px] font-medium text-ink-muted">
             {advisor.role}
           </motion.p>
